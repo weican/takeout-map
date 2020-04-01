@@ -1,0 +1,93 @@
+{
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "PARK_ID": 1,
+                "NAME": "Sakana Grill",
+                "NAME_FR": "Sakana Grill",
+                "ADDRESS": "10 Crowfoot Cir NW, Calgary, AB T3G 2R2",
+                "ADDRESS_FR": "10 Crowfoot Cir NW, Calgary, AB T3G 2R2",
+                "OPEN": "Monday-Sunday 12pm to 8pm",
+                "NOTES": "Takeouts receive 20% off and Cash payments not accepted",
+                "MODIFIED_D": "2020/04/01",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "Sushi restaurant",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 208-9799",
+                "WEBSITE": "http://www.sakanagrill.ca/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ 51.123160, -114.203180]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "PARK_ID": 2,
+                "NAME": "Fusion Sushi",
+                "NAME_FR": "Fusion Sushi",
+                "ADDRESS": "1829 Ranchlands Blvd NW 159, Calgary, AB T3G 2A7",
+                "ADDRESS_FR": "",
+                "OPEN": "Closed",
+                "NOTES": "",
+                "MODIFIED_D": "2020/04/01",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 475-6225",
+                "WEBSITE": "http://fusionsushithai.ca"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ 51.123799, -114.2004097]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "PARK_ID": 3,
+                "NAME": "Bobby Chao's",
+                "NAME_FR": "",
+                "ADDRESS": "34 Edgedale Dr NW #18, Calgary, AB T3A 2R4",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. 11am to 8pm",
+                "NOTES": "",
+                "MODIFIED_D": "2020/04/01",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 207-7840",
+                "WEBSITE": "https://bobbychaos.business.site/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [51.118880, -114.156970]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "PARK_ID": 4,
+                "NAME": "Takumi Sushi",
+                "NAME_FR": "",
+                "ADDRESS": "150 Crowfoot Crescent NW #311, Calgary, AB T3G 2L5",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. 12pm to 8pm",
+                "NOTES": "Call for Pick up order 20% OFF and Valid Mar. 14 - Apr. 30 *Extra 5% off for cash pay *Can not use with other discount *Lunch menu or online order not included *Until Apr 30, 2020",
+                "MODIFIED_D": "2020/04/01",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 475-2010",
+                "WEBSITE": "https://www.takumisushicalgary.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [51.125590, -114.198760]
+            }
+        }
+        
+    ]
+}
