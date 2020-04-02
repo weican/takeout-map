@@ -24,9 +24,9 @@ const App = () => {
       {position &&
         <MapContainer position={position} value={"position"}></MapContainer>
       }
+      Icon by <a target="_blank" href="https://icons8.com">Icons8</a>
     </div>
-    
-    
+        
   );
   
 }

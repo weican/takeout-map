@@ -1,13 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import * as foodData from "../data/food-location.json";
-
+// import L from "leaflet.awesome-markers";
+import { Icon } from "leaflet";
+// import L from 'leaflet'
 const leafletContainer = {
   width: '100%',
   height: '90vh',
 }
 
 const position1 = [51.123160, -114.203180];
+
+// export const icon = L.AwesomeMarkers.icon({
+//   icon: 'coffee',
+//   markerColor: 'red'
+// });
+
+export const pointerIcon = new Icon({
+  iconUrl: '/home.svg',
+  iconRetinaUrl: '/home.svg',
+  iconAnchor: [5, 55],
+  popupAnchor: [10, -44],
+  iconSize: [25, 25]
+})
 
 export const MapContainer = ({position, value}) => {
   const [activePlace, setActivePlace] = useState(null);
@@ -28,6 +43,7 @@ export const MapContainer = ({position, value}) => {
               position[0],
               position[1]
             ]}
+            icon={pointerIcon}
         />
 
         {foodData.features.map(place => (

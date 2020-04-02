@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/react-leaflet": "^2.5.1",
     "leaflet": "^1.6.0",
+    "leaflet.awesome-markers": "^2.0.5",
+    "leaflet.awesome-markers-alarm": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-geolocated": "^3.0.1",
