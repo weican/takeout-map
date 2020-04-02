@@ -97,7 +97,7 @@
                 "ADDRESS": "12580 Symons Valley Rd NW #130, Calgary, AB T3P 0A3",
                 "ADDRESS_FR": "",
                 "OPEN": "Opend. 8am - 2pm take out and delivery only",
-                "NOTES": "",
+                "NOTES": " For a free lunch for your child",
                 "MODIFIED_D": "2020/04/02",
                 "CREATED_DA": null,
                 "DESCRIPTIO": "",
@@ -109,7 +109,162 @@
                 "type": "Point",
                 "coordinates": [51.1667292,-114.1298827]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 6,
+                "NAME": "Moxie's Grill & Bar",
+                "NAME_FR": "",
+                "ADDRESS": "29 Hopewell Way NE, Calgary, AB T3J 4V7",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. 12pm - 8pm",
+                "NOTES": "Take 20% off food on all phoned in pick-up orders and Half Price bottles of wine 7 days a week. Valid Mar. 27 - Apr. 30",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 291-4636",
+                "WEBSITE": "https://moxies.com/restaurant-locations/alberta/calgary-north/barlow-trail"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [51.0950246,-114.0008515]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 7,
+                "NAME": "Famoso Neapolitan Pizzeria",
+                "NAME_FR": "",
+                "ADDRESS": "5 High St SE, Calgary, AB T2Z 3T7",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. 12pm - 8pm",
+                "NOTES": "",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(587) 352-5566",
+                "WEBSITE": "https://famoso.ca"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [50.9162127,-113.9609374]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 8,
+                "NAME": "The Canadian Brewhouse (Mahogany)",
+                "NAME_FR": "",
+                "ADDRESS": "7 Mahogany Plaza SE #700, Calgary, AB T3M 2P8",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. 4pm - 10pm",
+                "NOTES": "20% off for pick up only",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(587) 333-4330",
+                "WEBSITE": "https://thecanadianbrewhouse.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [50.898555,-113.9435105]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 9,
+                "NAME": "Cassis Bistro",
+                "NAME_FR": "",
+                "ADDRESS": "2505 17 Ave SW #105, Calgary, AB T3C 1J7",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. Wednesday - Sunday 5pm - 9pm pick-up and delivery only",
+                "NOTES": "",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 262-0036",
+                "WEBSITE": "https://www.thecassisbistro.ca/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [51.0373905,-114.118642]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 10,
+                "NAME": "Silver Dragon Restaurant",
+                "NAME_FR": "",
+                "ADDRESS": "106 3 Ave SE, Calgary, AB T2G 0B6",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend.  (Temporary): 11:00 a.m. to 9:00 p.m pick-up and delivery only",
+                "NOTES": "",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 264-5326",
+                "WEBSITE": "https://www.silverdragoncalgary.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [51.0502018,-114.062561]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 11,
+                "NAME": "Una Pizza + Wine",
+                "NAME_FR": "",
+                "ADDRESS": "618 17 Ave SW, Calgary, AB T2S 0B4",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. 11am. to 11pm pick-up and delivery only",
+                "NOTES": "",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 453-1183",
+                "WEBSITE": "https://unatakeaway.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [51.0380497,-114.0764496]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 12,
+                "NAME": "State & Main Kitchen & Bar",
+                "NAME_FR": "",
+                "ADDRESS": "7 Mahogany Plaza SE #470, Calgary, AB T3M 0T7",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. 3pm. to 10pm pick-up and delivery only",
+                "NOTES": "",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 452-0802",
+                "WEBSITE": "https://www.stateandmain.ca/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [50.8990177,-113.94193]
+            }
         }
+
         
     ]
 }

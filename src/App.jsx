@@ -21,7 +21,7 @@ const App = () => {
           Food and Restaurant Take Out Map
         </h1>
         <h5>
-          We are looking for small restaurants which are still opening for take out.
+          We are looking for restaurants which are still open for take out.
           We can share this information with our neighborhood and help each other to sail through COVID 19.
         </h5>
       </header>
