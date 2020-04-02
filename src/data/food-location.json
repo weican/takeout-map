@@ -3,7 +3,7 @@
         {
             "type": "Feature",
             "properties": {
-                "PARK_ID": 1,
+                "LOCATION_ID": 1,
                 "NAME": "Sakana Grill",
                 "NAME_FR": "Sakana Grill",
                 "ADDRESS": "10 Crowfoot Cir NW, Calgary, AB T3G 2R2",
@@ -25,7 +25,7 @@
         {
             "type": "Feature",
             "properties": {
-                "PARK_ID": 2,
+                "LOCATION_ID": 2,
                 "NAME": "Fusion Sushi",
                 "NAME_FR": "Fusion Sushi",
                 "ADDRESS": "1829 Ranchlands Blvd NW 159, Calgary, AB T3G 2A7",
@@ -47,7 +47,7 @@
         {
             "type": "Feature",
             "properties": {
-                "PARK_ID": 3,
+                "LOCATION_ID": 3,
                 "NAME": "Bobby Chao's",
                 "NAME_FR": "",
                 "ADDRESS": "34 Edgedale Dr NW #18, Calgary, AB T3A 2R4",
@@ -69,7 +69,7 @@
         {
             "type": "Feature",
             "properties": {
-                "PARK_ID": 4,
+                "LOCATION_ID": 4,
                 "NAME": "Takumi Sushi",
                 "NAME_FR": "",
                 "ADDRESS": "150 Crowfoot Crescent NW #311, Calgary, AB T3G 2L5",
@@ -86,6 +86,28 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [51.127277,-114.1962942]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 5,
+                "NAME": "The Bro'Kin Yolk Creekside",
+                "NAME_FR": "",
+                "ADDRESS": "12580 Symons Valley Rd NW #130, Calgary, AB T3P 0A3",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. 8am - 2pm take out and delivery only",
+                "NOTES": "",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(587) 317-5743",
+                "WEBSITE": "https://www.brokinyolk.ca/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [51.1667292,-114.1298827]
             }
         }
         

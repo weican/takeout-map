@@ -17,14 +17,18 @@ const App = () => {
   return (
      <div className="App">
        <header className="App-header">
-        <p>
+        <h1>
           Food and Restaurant Take Out Map
-        </p>
+        </h1>
+        <h5>
+          We are looking for small restaurants which are still opening for take out.
+          We can share this information with our neighborhood and help each other to sail through COVID 19.
+        </h5>
       </header>
       {position &&
         <MapContainer position={position} value={"position"}></MapContainer>
       }
-      Icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+      Icon by <a target="_blank" href="https://loading.io/">loading.io</a>
     </div>
         
   );
