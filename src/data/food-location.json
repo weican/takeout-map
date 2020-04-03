@@ -263,6 +263,138 @@
                 "type": "Point",
                 "coordinates": [50.8990177,-113.94193]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 13,
+                "NAME": "KINJO Sushi & Grill",
+                "NAME_FR": "",
+                "ADDRESS": "7 Mahogany Plaza SE #200, Calgary, AB T3M 2P8",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. Everyday from 12:00pm - 8:00pm",
+                "NOTES": "20% off is valid for all Call In and Walk In orders",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(587) 471-9997",
+                "WEBSITE": "https://www.kinjosushiandgrill.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [50.8990602,-113.9418195]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 14,
+                "NAME": "KINJO Sushi & Grill",
+                "NAME_FR": "",
+                "ADDRESS": "150 Millrise Blvd SW, Calgary, AB T2Y 5G7",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. Everyday from 12:00pm - 8:00pm",
+                "NOTES": "20% off is valid for all Call In and Walk In orders",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 452-6888",
+                "WEBSITE": "https://www.kinjosushiandgrill.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [50.9142195,-114.0731493]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 15,
+                "NAME": "KINJO Sushi & Grill",
+                "NAME_FR": "",
+                "ADDRESS": "7101 Macleod Trail SW, Calgary, AB T2H 0L8",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. Everyday from 12:00pm - 8:00pm",
+                "NOTES": "20% off is valid for all Call In and Walk In orders",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 255-8998",
+                "WEBSITE": "https://www.kinjosushiandgrill.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [50.9901138,-114.0734107]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 15,
+                "NAME": "KINJO Sushi & Grill",
+                "NAME_FR": "",
+                "ADDRESS": "120 Stewart Green SW, Calgary, AB T3H 3C8",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. Everyday from 12:00pm - 8:00pm",
+                "NOTES": "20% off is valid for all Call In and Walk In orders",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(587) 864-8523",
+                "WEBSITE": "https://www.kinjosushiandgrill.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [51.017002,-114.167717]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 16,
+                "NAME": "KINJO Sushi & Grill",
+                "NAME_FR": "",
+                "ADDRESS": "5005, 415 Dalhousie Dr NW #415, Calgary, AB T3A 5R8",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. Everyday from 12:00pm - 8:00pm",
+                "NOTES": "20% off is valid for all Call In and Walk In orders",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(403) 452-8389",
+                "WEBSITE": "https://www.kinjosushiandgrill.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [51.1049205,-114.1624974]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "LOCATION_ID": 17,
+                "NAME": "KINJO Sushi & Grill",
+                "NAME_FR": "",
+                "ADDRESS": "11135 14 St NE, Calgary, AB T3K 5Y7",
+                "ADDRESS_FR": "",
+                "OPEN": "Opend. Everyday from 12:00pm - 8:00pm",
+                "NOTES": "20% off is valid for all Call In and Walk In orders",
+                "MODIFIED_D": "2020/04/02",
+                "CREATED_DA": null,
+                "DESCRIPTIO": "",
+                "DESCRIPT_1": "",
+                "PHONE": "(587) 755-5888",
+                "WEBSITE": "https://www.kinjosushiandgrill.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [51.1517924,-114.0304858]
+            }
         }
 
         
