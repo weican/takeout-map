@@ -8,8 +8,6 @@ const leafletContainer = {
   height: '90vh',
 }
 
-const position1 = [51.123160, -114.203180];
-
 export const homeIcon = new Icon({
   iconUrl: '/home.svg',
   iconSize: [35, 35]
@@ -31,14 +29,14 @@ const setIcon = (place) =>{
   return defaultIcon;  
 }
 
-export const MapContainer = ({position, value}) => {
+export const MapContainer = ({position, zoom}) => {
   const [activePlace, setActivePlace] = useState(null);
   
   return (
     <>
     { 
       position[0] && position[1] &&
-      <Map style={leafletContainer} center={position} zoom={14}>
+      <Map style={leafletContainer} center={position} zoom={zoom}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
