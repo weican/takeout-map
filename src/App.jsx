@@ -13,7 +13,7 @@ const App = () => {
 
   useEffect(() => {
     setPosition([latitude, longitude]);
-  },[latitude, longitude])
+  },[latitude, longitude]);
   
   return (
      <div className="App">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import * as foodData from "../data/food-location.json";
 import { Icon } from "leaflet";
+import { getAllRestaurants } from '../services/Restaurant';
 
 const leafletContainer = {
   width: '100%',
@@ -24,13 +25,23 @@ export const discountIcon = new Icon({
 })
 
 const setIcon = (place) =>{
-  if(place.properties.NOTES) 
+  if(place.notes) 
     return discountIcon;
   return defaultIcon;  
 }
 
 export const MapContainer = ({position, zoom}) => {
   const [activePlace, setActivePlace] = useState(null);
+  const [list, setList] = useState({ restaurants: [] });
+
+  useEffect(() => {
+    const getAllRestaurantsAsync = async() => {
+      const value = await getAllRestaurants();
+      setList(value._embedded);
+      console.log(value);
+    }
+    getAllRestaurantsAsync();
+  },[]);
   
   return (
     <>
@@ -50,8 +61,42 @@ export const MapContainer = ({position, zoom}) => {
             ]}
             icon={homeIcon}
         />
+        {list.restaurants.map(place => (
+          <Marker
+            key={place.phone}
+            position={[
+              place.latitude,
+              place.longitude
+            ]}
+            onClick={() => {
+              setActivePlace(place);
+            }}
+            icon={setIcon(place)}
+          />
+        ))}
 
-        {foodData.features.map(place => (
+        {activePlace && (
+          <Popup
+            position={[
+              activePlace.latitude,
+              activePlace.longitude
+            ]}
+            onClose={() => {
+              setActivePlace(null);
+            }}
+          >
+            <div>
+              <h2>{activePlace.name}</h2>
+              <p>{activePlace.open_time}</p>
+              <p>{activePlace.address}</p>
+              <p>{activePlace.notes}</p>
+              <p>{activePlace.phone}</p>
+              <a href={activePlace.website}>{activePlace.website}</a>
+            </div>
+          </Popup>
+        )}
+
+        {/* {foodData.features.map(place => (
           <Marker
             key={place.properties.LOCATION_ID}
             position={[
@@ -63,9 +108,9 @@ export const MapContainer = ({position, zoom}) => {
             }}
             icon={setIcon(place)}
           />
-        ))}
+        ))} */}
 
-        {activePlace && (
+        {/* {activePlace && (
           <Popup
             position={[
               activePlace.geometry.coordinates[0],
@@ -85,7 +130,7 @@ export const MapContainer = ({position, zoom}) => {
               <a href={activePlace.properties.WEBSITE}>{activePlace.properties.WEBSITE}</a>
             </div>
           </Popup>
-        )}
+        )} */}
 
         </Map> 
       }

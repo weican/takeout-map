@@ -333,7 +333,7 @@
         {
             "type": "Feature",
             "properties": {
-                "LOCATION_ID": 15,
+                "LOCATION_ID": 16,
                 "NAME": "KINJO Sushi & Grill",
                 "NAME_FR": "",
                 "ADDRESS": "120 Stewart Green SW, Calgary, AB T3H 3C8",
@@ -355,7 +355,7 @@
         {
             "type": "Feature",
             "properties": {
-                "LOCATION_ID": 16,
+                "LOCATION_ID": 17,
                 "NAME": "KINJO Sushi & Grill",
                 "NAME_FR": "",
                 "ADDRESS": "5005, 415 Dalhousie Dr NW #415, Calgary, AB T3A 5R8",
@@ -377,7 +377,7 @@
         {
             "type": "Feature",
             "properties": {
-                "LOCATION_ID": 17,
+                "LOCATION_ID": 18,
                 "NAME": "KINJO Sushi & Grill",
                 "NAME_FR": "",
                 "ADDRESS": "11135 14 St NE, Calgary, AB T3K 5Y7",
