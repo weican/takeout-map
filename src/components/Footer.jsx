@@ -16,7 +16,7 @@ const Copyright = () => {
 }
 
 const Email = () => {
-  return (<Typography color="textSecondary">Email: objectbit1@gmail.com</Typography>);
+  return (<Typography color="textSecondary">Email: takeout-map@objectbit.ca</Typography>);
 }
 
 const Author = () => {
