@@ -22,7 +22,7 @@ const Email = () => {
 const Author = () => {
   return (
   <div>
-    <Typography color="textSecondary">Contributor: Wales Chang, David Chang</Typography>
+    <Typography color="textSecondary">Created by: Wales Chang, David Chang</Typography>
     <Email/>
   </div>);
 }
