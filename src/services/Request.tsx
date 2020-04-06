@@ -5,12 +5,13 @@ import { useState } from 'react';
     // const  apiKEY  =  "<YOUR_API_KEY_HERE>";
     return await axios({
       url: URL,
-      method: 'get'
+      method: 'get',
     }).then(response => {
       return response.data;
     })
     .catch(response => {
       console.log(response);
+      alert(response);
     })
   };
 
@@ -24,10 +25,11 @@ import { useState } from 'react';
     })
     .catch(response => {
       console.log(response);
+      alert(response);
     })
   };
   
-  export const sendDeleteRequest = async (URL: string, companyId: string) => {
+  export const sendDeleteRequest = async (URL: string) => {
     return await axios({
       url: URL,
       method: 'delete',

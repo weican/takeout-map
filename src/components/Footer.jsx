@@ -16,28 +16,27 @@ const Copyright = () => {
 }
 
 const Email = () => {
-  return (<Typography color="textSecondary">Email: objectbit1@gmail.com</Typography>)
+  return (<Typography color="textSecondary">Email: objectbit1@gmail.com</Typography>);
+}
+
+const Author = () => {
+  return (
+  <div>
+    <Typography color="textSecondary">Contributor: Wales Chang, David Chang</Typography>
+    <Email/>
+  </div>);
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
-  },
-  main: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2),
-  },
   footer: {
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[800] : theme.palette.grey[800],
+      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
   },
 }));
 
-export default function StickyFooter() {
+export default () => {
   const classes = useStyles();
 
   return (
@@ -53,8 +52,8 @@ export default function StickyFooter() {
             Icon by <a target="_blank" href="https://loading.io/">loading.io</a>
           </Typography>
           <Copyright />
-          <Email/>
-          </Grid>
+          <Author/>
+      </Grid>
       </footer>
     </div>
   );

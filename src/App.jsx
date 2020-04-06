@@ -1,9 +1,9 @@
 import React, { useState,  useEffect } from 'react';
 import { MapContainer } from './components/MapContainer';
-import {usePosition} from './components/usePosition';
+import { usePosition } from './components/usePosition';
 import StickyFooter from './components/Footer';
-import MenuIcon from '@material-ui/icons/Menu';
-import { Grid, Button, Typography } from '@material-ui/core';
+import MenuPopover from './components/MenuPopover';
+import { Grid, Typography } from '@material-ui/core';
 import './App.css';
 import './components/MapContainer';
 
@@ -31,22 +31,18 @@ const App = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={1}>
-              <Button variant="contained" color="white" disableElevation>
-              <MenuIcon></MenuIcon>
-              </Button>
+              <MenuPopover/>
             </Grid>
         </Grid>
         <Typography variant="body1">We are looking for restaurants which are still open for take out.
           We can share this information with our neighborhood and help each other to sail through COVID 19.</Typography>        
       </header>
-      <body>
         {position[0]
           ? <MapContainer position={position} zoom={14}></MapContainer>
           : <MapContainer position={defaultPosition} zoom={10}></MapContainer>
         }
         
         <StickyFooter/>
-      </body>
     </div>
         
   );
