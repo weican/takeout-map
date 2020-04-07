@@ -14,8 +14,8 @@
 }
 
 .App-header {
-  background: rgb(34,193,195);
-  background: radial-gradient(circle, rgba(34,193,195,1) 4%, rgba(24,144,247,1) 63%);
+  background: rgb(255,126,110);
+  background: linear-gradient(90deg, rgba(255,126,110,1) 0%, rgba(245,166,56,1) 53%);
   min-height: 15vh;
   display: flex;
   flex-direction: column;
