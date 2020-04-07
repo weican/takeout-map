@@ -89,7 +89,7 @@ export const MapContainer = ({position, zoom}) => {
               <h2>{activePlace.name}</h2>
               <p>{activePlace.open_time}</p>
               <p>{activePlace.address}</p>
-              <p>{activePlace.notes}</p>
+              <p><strong>{activePlace.notes}</strong></p>
               <p>{activePlace.phone}</p>
               <a href={activePlace.website}>{activePlace.website}</a>
             </div>
