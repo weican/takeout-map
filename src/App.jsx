@@ -6,9 +6,11 @@ import MenuPopover from './components/MenuPopover';
 import { Grid, Typography } from '@material-ui/core';
 import './App.css';
 import './components/MapContainer';
+import ReactGA from 'react-ga';
 
 const myPosition = [];
 const defaultPosition = [51.0443141,-114.0632342];
+ReactGA.initialize('UA-162986528-01');
 
 const App = () => {
   const {latitude, longitude, error} = usePosition();
@@ -18,6 +20,10 @@ const App = () => {
     setPosition([latitude, longitude]);
   },[latitude, longitude]);
   
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, []);
+
   return (
      <div className="App">
        <header className="App-header">

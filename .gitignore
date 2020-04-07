@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 src/apikey.json
 take-outmap-favicon_io.zip
+takeout-map-db.bak
+takeout-map.db.json
