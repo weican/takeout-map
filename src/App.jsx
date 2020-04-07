@@ -35,9 +35,10 @@ const App = () => {
             </Grid>
         </Grid>
         <Typography variant="h5">Select any marker to see restautrant information and discount.</Typography>
-        <Typography variant="body1">We are looking for restaurants which are still open for take out.
-          We can share this information with our neighborhood and help each other to sail through COVID 19.
-          If you are a restaurant owner or someone who is willing to provide further nearby restaurant information, please feel free to email to us. Email: takeout-map@objectbit.ca
+        <Typography variant="body1">This is a free tool for helping restaurants that are still open 
+        for take out during COVID 19 pandemic by sharing restaurants information with our neighborhood. 
+        If you are a restaurant owner or someone who is interested to share further nearby restaurant information with the public, 
+        please feel free to email to us. Email: takeout-map@objectbit.ca
         </Typography>        
       </header>
         {position[0]

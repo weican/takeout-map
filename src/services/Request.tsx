@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useState } from 'react';
 
   export const sendGetRequest = async (URL: string) => {
-    // const  apiKEY  =  "<YOUR_API_KEY_HERE>";
     return await axios({
       url: URL,
       method: 'get',
