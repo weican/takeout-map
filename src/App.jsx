@@ -4,7 +4,7 @@ import { usePosition } from './components/usePosition';
 import StickyFooter from './components/Footer';
 import MenuPopover from './components/MenuPopover';
 import { Grid, Typography } from '@material-ui/core';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, HashRouter as Router, Switch } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import TermOfUse from './pages/TermOfUse';
 

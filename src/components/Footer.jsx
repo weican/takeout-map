@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { Link, Grid, makeStyles } from '@material-ui/core';
-
+import { Grid, makeStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary">
@@ -20,7 +20,7 @@ const Email = () => {
 }
 
 const TermOfUse = () => {
-  return (<Link href="/TermOfUse">Term Of Use</Link>)
+  return <Link to="/TermOfUse">Term Of Use</Link>
 }
 
 const Author = () => {
@@ -51,7 +51,7 @@ export default () => {
   const classes = useStyles();
 
   return (
-    <div>
+    <>
       <footer className={classes.footer}>
       <Grid
           container
@@ -65,6 +65,6 @@ export default () => {
           <Author/>
       </Grid>
       </footer>
-    </div>
+    </>
   );
 }
