@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import * as foodData from "../data/food-location.json";
 import { Icon } from "leaflet";
 import { getAllRestaurants } from '../services/Restaurant';
 

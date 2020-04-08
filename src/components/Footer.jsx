@@ -19,12 +19,23 @@ const Email = () => {
   return (<Typography color="textSecondary">Email: takeout-map@objectbit.ca</Typography>);
 }
 
+const TermOfUse = () => {
+  return (<Link href="/TermOfUse">Term Of Use</Link>)
+}
+
 const Author = () => {
   return (
   <div>
     <Typography color="textSecondary">Created by: Wales Chang, David Chang</Typography>
+    <Icon/>
     <Email/>
   </div>);
+}
+
+const Icon = () => {
+  return (<Typography variant="body1" color="textSecondary">
+  Icon by <a target="_blank" href="https://loading.io/">loading.io</a>
+  </Typography>);
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -48,9 +59,8 @@ export default () => {
           justify="space-between"
           alignItems="center"
         >
-          <Typography variant="body1" color="textSecondary">
-            Icon by <a target="_blank" href="https://loading.io/">loading.io</a>
-          </Typography>
+         
+          <TermOfUse/>
           <Copyright />
           <Author/>
       </Grid>
