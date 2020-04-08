@@ -1,5 +1,10 @@
-import axios from 'axios';
-import { useState } from 'react';
+  import axios, { AxiosBasicCredentials } from 'axios';
+  import apikey from '../apikey.json';
+
+  const auth: AxiosBasicCredentials = {
+    username: apikey.name,
+    password: apikey.password
+  };
 
   export const sendGetRequest = async (URL: string) => {
     return await axios({
@@ -18,7 +23,8 @@ import { useState } from 'react';
     return await axios({
       url: URL,
       method: 'post',
-      data: data
+      data: data,
+      auth: auth,
     }).then(response => {
       return response.data;
     })
@@ -32,6 +38,7 @@ import { useState } from 'react';
     return await axios({
       url: URL,
       method: 'delete',
+      auth: auth,
     }).then(response => {
       return response.data;
     })
@@ -41,7 +48,8 @@ import { useState } from 'react';
     return await axios({
       url: URL,
       method: 'put',
-      data: data
+      data: data,
+      auth: auth,
     }).then(response => {
       return response.data;
     })
