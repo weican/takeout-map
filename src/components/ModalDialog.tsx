@@ -8,6 +8,8 @@ export interface Place {
   name: string,
   address: string,
   // city: string,
+  // division: string,
+  // area: string,
   // country: string,
   latitude: number,
   longitude: number,
@@ -17,9 +19,13 @@ export interface Place {
   website: string
 }
 
-const PlaceData = {
+const PlaceData: Place = {
   name: "",
   address: "",
+  // city: "",
+  // division: "",
+  // area: "",
+  // country: "",
   latitude: 0.0,
   longitude: 0.0,
   notes: "",
@@ -85,11 +91,31 @@ export default () => {
   const handleConfirm = () => {
     const getPlaceDataAsync = async() => {
       const value = await getPlaceData(place.address);
+      // const value = await getPlaceData("8650 112 Ave NW, Calgary, AB T3R 0R5");
       if(value) {
         // console.log(value.results[0].geometry.location);
         const {lat, lng}  = value.results[0].geometry.location;
         setPlace({field: 'latitude', value: lat});
         setPlace({field: 'longitude', value: lng});
+
+        // const { address_components } = value.results[0];
+        // address_components.forEach((list:any) => {
+
+        //   switch(list.types[0]) {
+        //     case 'administrative_area_level_1': 
+        //       setPlace({field: "area", value: list.long_name});
+        //       break;
+        //     case 'administrative_area_level_2': 
+        //       setPlace({field: "division", value: list.long_name});
+        //       break;
+        //     case 'country': 
+        //       setPlace({field: "country", value: list.long_name});
+        //       break;
+        //     case 'locality': 
+        //       setPlace({field: "city", value: list.long_name});
+        //       break;
+        //   }
+        // });
         
       }
       // setPlace({field: 'latitude', value: 51.1242456});
@@ -103,9 +129,11 @@ export default () => {
     if(place.latitude !== 0.0 && place.longitude !== 0.0) {
       const createRestaurantsAsync = async() => {
           const res = await createRestaurant(place);
+          alert(JSON.stringify(res));
           console.log(res);
           setOpen(false);
       }
+      console.log(place);
       createRestaurantsAsync();
     }
   }, [place]);
