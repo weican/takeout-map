@@ -2,7 +2,7 @@ import React, { useState, useReducer, ChangeEvent, useEffect  } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Modal, Backdrop, Fade, Typography, Button, Grid, TextField } from '@material-ui/core';
 import { getPlaceData } from '../services/Geocoding';
-import { createRestaurant } from '../services/Restaurant';
+import { createRestaurant, deleteRestaurant } from '../services/Restaurant';
 
 export interface Place {
   name: string,
@@ -74,6 +74,14 @@ export default () => {
     setOpen(false);
   };
 
+  const handleDelete = () => {
+    const deleteRestaurantAsync = async() => {
+      const res = await deleteRestaurant("");
+      console.log(res);
+    }
+    deleteRestaurantAsync();
+  };
+
   const handleConfirm = () => {
     const getPlaceDataAsync = async() => {
       const value = await getPlaceData(place.address);
@@ -139,6 +147,7 @@ export default () => {
               
               <Button variant="contained" color="primary" onClick={handleConfirm}>Confirm</Button>
               <Button variant="contained" onClick={handleClose}>Cancel</Button>
+              {/* <Button variant="contained" onClick={handleDelete}>Delete</Button> */}
             </Grid>
           </div>
         </Fade>

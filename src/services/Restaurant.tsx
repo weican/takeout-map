@@ -12,8 +12,8 @@ export const createRestaurant = (place : Place) => {
     return sendPostRequest(url + 'restaurants', place);
 }
 
-export const deleteRestaurant = (url: string) => {
-    return sendDeleteRequest(url);
+export const deleteRestaurant = (uuid: string) => {
+    return sendDeleteRequest(`${url}restaurants/${uuid}`);
 }
 
 export const getRestaurantsByLocation = () => {
