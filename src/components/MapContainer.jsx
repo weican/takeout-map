@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Icon } from "leaflet";
 import { getAllRestaurants } from '../services/Restaurant';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { Typography, Button, List, ListItem, ListItemIcon, ListItemText, Grid } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import FolderIcon from '@material-ui/icons/Folder';
 
 const leafletContainer = {
   width: '100%',
@@ -23,116 +27,124 @@ export const discountIcon = new Icon({
   iconSize: [50, 50]
 })
 
-const setIcon = (place) =>{
-  if(place.notes) 
+const setIcon = (place) => {
+  if (place.notes)
     return discountIcon;
-  return defaultIcon;  
+  return defaultIcon;
 }
 
-export const MapContainer = ({position, zoom}) => {
+const displayTime = (time, itemText) => {
+  const items = time.split(',');
+  return (
+    items.map(item => (
+      <ListItem>
+        <ListItemText  className={itemText} primary={item}></ListItemText>
+      </ListItem>
+    ))
+  )
+}
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper,
+      marginTop: '0px',
+      marginBottom: '0x',
+    },
+    ListItem: {
+      paddingTop: '0px',
+      paddingBottom: '0px',
+    },
+    itemText: {
+      marginTop: '0px',
+      marginBottom: '0px',
+    }
+  }),
+);
+
+export const MapContainer = ({ position, zoom }) => {
   const [activePlace, setActivePlace] = useState(null);
   const [list, setList] = useState({ restaurants: [] });
+  const classes = useStyles();
 
   useEffect(() => {
-    const getAllRestaurantsAsync = async() => {
+    const getAllRestaurantsAsync = async () => {
       const value = await getAllRestaurants();
       setList(value._embedded);
       console.log(value);
     }
     getAllRestaurantsAsync();
-  },[]);
-  
+  }, []);
+
   return (
     <>
-    { 
-      position[0] && position[1] &&
-      <Map style={leafletContainer} center={position} zoom={zoom}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-        />
+      {
+        position[0] && position[1] &&
+        <Map style={leafletContainer} center={position} zoom={zoom}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+          />
 
-        <Marker
+          <Marker
             key={0}
             position={[
               position[0],
               position[1]
             ]}
             icon={homeIcon}
-        />
-        {list.restaurants.map(place => (
-          <Marker
-            key={place.phone}
-            position={[
-              place.latitude,
-              place.longitude
-            ]}
-            onClick={() => {
-              setActivePlace(place);
-            }}
-            icon={setIcon(place)}
           />
-        ))}
+          {list.restaurants.map(place => (
+            <Marker
+              key={place.phone}
+              position={[
+                place.latitude,
+                place.longitude
+              ]}
+              onClick={() => {
+                setActivePlace(place);
+              }}
+              icon={setIcon(place)}
+            />
+          ))}
 
-        {activePlace && (
-          <Popup
-            position={[
-              activePlace.latitude,
-              activePlace.longitude
-            ]}
-            onClose={() => {
-              setActivePlace(null);
-            }}
-          >
-            <div>
-              <h2>{activePlace.name}</h2>
-              <p>{activePlace.open_time}</p>
-              <p>{activePlace.address}</p>
-              <p><strong>{activePlace.notes}</strong></p>
-              <p>{activePlace.phone}</p>
-              <a href={activePlace.website}>{activePlace.website}</a>
-            </div>
-          </Popup>
-        )}
-
-        {/* {foodData.features.map(place => (
-          <Marker
-            key={place.properties.LOCATION_ID}
-            position={[
-              place.geometry.coordinates[0],
-              place.geometry.coordinates[1]
-            ]}
-            onClick={() => {
-              setActivePlace(place);
-            }}
-            icon={setIcon(place)}
-          />
-        ))} */}
-
-        {/* {activePlace && (
-          <Popup
-            position={[
-              activePlace.geometry.coordinates[0],
-              activePlace.geometry.coordinates[1]
-            ]}
-            onClose={() => {
-              setActivePlace(null);
-            }}
-          >
-            <div>
-              <h2>{activePlace.properties.NAME}</h2>
-              <h3>{activePlace.properties.DESCRIPTIO}</h3>
-              <p>{activePlace.properties.OPEN}</p>
-              <p>{activePlace.properties.ADDRESS}</p>
-              <p>{activePlace.properties.NOTES}</p>
-              <p>{activePlace.properties.PHONE}</p>
-              <a href={activePlace.properties.WEBSITE}>{activePlace.properties.WEBSITE}</a>
-            </div>
-          </Popup>
-        )} */}
-
-        </Map> 
+          {activePlace && (
+            <Popup
+              position={[
+                activePlace.latitude,
+                activePlace.longitude
+              ]}
+              onClose={() => {
+                setActivePlace(null);
+              }}
+            >
+                <Typography variant="h6">{activePlace.name}</Typography>
+                <List dense={true} className={classes.ListItem}>
+                  <ListItem >
+                    <ListItemText className={classes.itemText} primary={activePlace.address}></ListItemText>
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText className={classes.itemText} primary={activePlace.phone}></ListItemText>
+                  </ListItem>
+                  <ListItem>
+                    <Button size="small" href={activePlace.website} target="_blank" rel="noopener">{activePlace.website}</Button>
+                  </ListItem>
+                  {activePlace.notes &&
+                  <ListItem>
+                    <ListItemText className={classes.itemText}><strong>{activePlace.notes}</strong></ListItemText>
+                  </ListItem>
+                  }
+                  <Typography variant="button">Open Time</Typography>
+                  <List dense={true} className={classes.ListItem}>
+                    {displayTime(activePlace.open_time, classes.itemText)}
+                  </List>
+                </List>
+            </Popup>
+          )}
+        </Map>
       }
     </>
-    )
+  )
 }
