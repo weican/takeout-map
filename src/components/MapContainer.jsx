@@ -36,8 +36,8 @@ const setIcon = (place) => {
 const displayTime = (time, itemText) => {
   const items = time.split(',');
   return (
-    items.map(item => (
-      <ListItem>
+    items.map((item, index) => (
+      <ListItem key={index}>
         <ListItemText  className={itemText} primary={item}></ListItemText>
       </ListItem>
     ))
@@ -53,13 +53,18 @@ const useStyles = makeStyles((theme) =>
       marginTop: '0px',
       marginBottom: '0x',
     },
-    ListItem: {
+    listItem: {
       paddingTop: '0px',
       paddingBottom: '0px',
     },
     itemText: {
       marginTop: '0px',
       marginBottom: '0px',
+    },
+    linkButton: {
+      overflow: "hidden",
+      textOverflow: 'ellipsis',
+      whiteSpace: "nowrap",
     }
   }),
 );
@@ -121,7 +126,7 @@ export const MapContainer = ({ position, zoom }) => {
               }}
             >
                 <Typography variant="h6">{activePlace.name}</Typography>
-                <List dense={true} className={classes.ListItem}>
+                <List dense={true} className={classes.listItem}>
                   <ListItem >
                     <ListItemText className={classes.itemText} primary={activePlace.address}></ListItemText>
                   </ListItem>
@@ -129,7 +134,9 @@ export const MapContainer = ({ position, zoom }) => {
                     <ListItemText className={classes.itemText} primary={activePlace.phone}></ListItemText>
                   </ListItem>
                   <ListItem>
-                    <Button size="small" href={activePlace.website} target="_blank" rel="noopener">{activePlace.website}</Button>
+                    <a className={classes.linkButton} href={activePlace.website} target="_blank" rel="noopener">
+                      {activePlace.website}
+                    </a>
                   </ListItem>
                   {activePlace.notes &&
                   <ListItem>
@@ -137,7 +144,7 @@ export const MapContainer = ({ position, zoom }) => {
                   </ListItem>
                   }
                   <Typography variant="button">Open Time</Typography>
-                  <List dense={true} className={classes.ListItem}>
+                  <List dense={true} className={classes.listItem}>
                     {displayTime(activePlace.open_time, classes.itemText)}
                   </List>
                 </List>
