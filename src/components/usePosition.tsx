@@ -8,9 +8,9 @@ const defaultSettings = {
 
 export const usePosition = (watch = false, settings = defaultSettings) => {
   const [position, setPosition] = useState({});
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const onChange = ({coords, timestamp}) => {
+  const onChange = ({coords, timestamp}: any) => {
     setPosition({
       latitude: coords.latitude,
       longitude: coords.longitude,
@@ -19,7 +19,7 @@ export const usePosition = (watch = false, settings = defaultSettings) => {
     });
   };
 
-  const onError = (error) => {
+  const onError = (error:any) => {
     setError(error.message);
   };
 
@@ -30,7 +30,7 @@ export const usePosition = (watch = false, settings = defaultSettings) => {
       return;
     }
 
-    let watcher = null;
+    let watcher:any = null;
     if (watch) {
       watcher = geo.watchPosition(onChange, onError, settings);
     } else {

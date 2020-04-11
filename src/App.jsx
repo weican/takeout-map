@@ -14,7 +14,7 @@ import './components/MapContainer';
 
 const myPosition = [];
 const defaultPosition = [51.0443141,-114.0632342];
-ReactGA.initialize('UA-162986528-01');
+// ReactGA.initialize('UA-162986528-01');
 
 const Home = () => {
 
@@ -25,9 +25,9 @@ const Home = () => {
     setPosition([latitude, longitude]);
   },[latitude, longitude]);
   
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }, []);
+  // useEffect(() => {
+  //   ReactGA.pageview(window.location.pathname + window.location.search)
+  // }, []);
 
     return (
     <div className="App">

@@ -3,9 +3,9 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Icon } from "leaflet";
 import { getAllRestaurants } from '../services/Restaurant';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Typography, Button, List, ListItem, ListItemIcon, ListItemText, Grid } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import FolderIcon from '@material-ui/icons/Folder';
+import { Typography, List, ListItem, ListItemIcon, ListItemText, Grid } from '@material-ui/core';
+import { Place } from './ModalDialog';
+
 
 const leafletContainer = {
   width: '100%',
@@ -27,13 +27,13 @@ export const discountIcon = new Icon({
   iconSize: [50, 50]
 })
 
-const setIcon = (place) => {
+const setIcon = (place: Place) => {
   if (place.notes)
     return discountIcon;
   return defaultIcon;
 }
 
-const displayTime = (time, itemText) => {
+const displayTime = (time:string, itemText: string) => {
   const items = time.split(',');
   return (
     items.map((item, index) => (
@@ -44,7 +44,7 @@ const displayTime = (time, itemText) => {
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme:Theme) =>
   createStyles({
     root: {
       width: '100%',
@@ -69,8 +69,8 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-export const MapContainer = ({ position, zoom }) => {
-  const [activePlace, setActivePlace] = useState(null);
+export const MapContainer = ({ position, zoom }: any) => {
+  const [activePlace, setActivePlace] = useState<Place | null>(null);
   const [list, setList] = useState({ restaurants: [] });
   const classes = useStyles();
 
@@ -101,7 +101,7 @@ export const MapContainer = ({ position, zoom }) => {
             ]}
             icon={homeIcon}
           />
-          {list.restaurants.map(place => (
+          {list.restaurants.map((place:Place) => (
             <Marker
               key={place.phone}
               position={[
