@@ -7,10 +7,10 @@ import { createRestaurant, deleteRestaurant } from '../services/Restaurant';
 export interface Place {
   name: string,
   address: string,
-  // city: string,
-  // division: string,
-  // area: string,
-  // country: string,
+  city: string,
+  postcode: string,
+  area: string,
+  country: string,
   latitude: number,
   longitude: number,
   notes: string,
@@ -22,10 +22,10 @@ export interface Place {
 const PlaceData: Place = {
   name: "",
   address: "",
-  // city: "",
-  // division: "",
-  // area: "",
-  // country: "",
+  city: "",
+  postcode: "",
+  area: "",
+  country: "",
   latitude: 0.0,
   longitude: 0.0,
   notes: "",
@@ -98,24 +98,24 @@ export default () => {
         setPlace({field: 'latitude', value: lat});
         setPlace({field: 'longitude', value: lng});
 
-        // const { address_components } = value.results[0];
-        // address_components.forEach((list:any) => {
+        const { address_components } = value.results[0];
+        address_components.forEach((list:any) => {
 
-        //   switch(list.types[0]) {
-        //     case 'administrative_area_level_1': 
-        //       setPlace({field: "area", value: list.long_name});
-        //       break;
-        //     case 'administrative_area_level_2': 
-        //       setPlace({field: "division", value: list.long_name});
-        //       break;
-        //     case 'country': 
-        //       setPlace({field: "country", value: list.long_name});
-        //       break;
-        //     case 'locality': 
-        //       setPlace({field: "city", value: list.long_name});
-        //       break;
-        //   }
-        // });
+          switch(list.types[0]) {
+            case 'administrative_area_level_1': 
+              setPlace({field: "state", value: list.long_name});
+              break;
+            case 'postal_code': 
+              setPlace({field: "postcode", value: list.long_name});
+              break;
+            case 'country': 
+              setPlace({field: "country", value: list.long_name});
+              break;
+            case 'locality': 
+              setPlace({field: "city", value: list.long_name});
+              break;
+          }
+        });
         
       }
       // setPlace({field: 'latitude', value: 51.1242456});

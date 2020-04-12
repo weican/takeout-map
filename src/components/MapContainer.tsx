@@ -5,6 +5,7 @@ import { getAllRestaurants } from '../services/Restaurant';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Typography, List, ListItem, ListItemIcon, ListItemText, Grid } from '@material-ui/core';
 import { Place } from './ModalDialog';
+import CityPanel from './CityPanel';
 
 
 const leafletContainer = {
@@ -92,7 +93,7 @@ export const MapContainer = ({ position, zoom }: any) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
           />
-
+          <CityPanel/>
           <Marker
             key={0}
             position={[
