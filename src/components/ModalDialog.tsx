@@ -16,7 +16,8 @@ export interface Place {
   notes: string,
   phone: string,
   open_time: string,
-  website: string
+  website: string,
+  updated_at: Date | null,
 }
 
 const PlaceData: Place = {
@@ -31,7 +32,8 @@ const PlaceData: Place = {
   notes: "",
   phone: "",
   open_time: "",
-  website: ""
+  website: "",
+  updated_at: null
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -94,13 +96,8 @@ export default () => {
       // const value = await getPlaceData("8650 112 Ave NW, Calgary, AB T3R 0R5");
       if(value) {
         // console.log(value.results[0].geometry.location);
-        const {lat, lng}  = value.results[0].geometry.location;
-        setPlace({field: 'latitude', value: lat});
-        setPlace({field: 'longitude', value: lng});
-
         const { address_components } = value.results[0];
         address_components.forEach((list:any) => {
-
           switch(list.types[0]) {
             case 'administrative_area_level_1': 
               setPlace({field: "state", value: list.long_name});
@@ -117,6 +114,9 @@ export default () => {
           }
         });
         
+        const {lat, lng}  = value.results[0].geometry.location;
+        setPlace({field: 'latitude', value: lat});
+        setPlace({field: 'longitude', value: lng});
       }
       // setPlace({field: 'latitude', value: 51.1242456});
       // setPlace({field: 'longitude', value: -114.2051428});

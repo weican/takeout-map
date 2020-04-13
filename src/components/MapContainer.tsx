@@ -6,7 +6,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Typography, List, ListItem, ListItemIcon, ListItemText, Grid } from '@material-ui/core';
 import { Place } from './ModalDialog';
 import CityPanel from './CityPanel';
-
+import Moment from 'react-moment';
 
 const leafletContainer = {
   width: '100%',
@@ -127,6 +127,9 @@ export const MapContainer = ({ position, zoom }: any) => {
               }}
             >
                 <Typography variant="h6">{activePlace.name}</Typography>
+                <Typography variant="caption" display="block" gutterBottom color="textSecondary">
+                  Updated <Moment fromNow>{activePlace.updated_at?.toString()}</Moment>
+                </Typography>
                 <List dense={true} className={classes.listItem}>
                   <ListItem >
                     <ListItemText className={classes.itemText} primary={activePlace.address}></ListItemText>
