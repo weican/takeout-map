@@ -32,7 +32,7 @@ const Author = () => {
 
 const Icon = () => {
   return (<Typography variant="body1" color="textSecondary">
-  Icon by <a target="_blank" href="https://loading.io/">loading.io</a>
+  Icon by <a target="_blank" href="https://loading.io/" rel="noopener noreferrer">loading.io</a>
   </Typography>);
 }
 

@@ -138,7 +138,7 @@ export const MapContainer = ({ position, zoom }: any) => {
                     <ListItemText className={classes.itemText} primary={activePlace.phone}></ListItemText>
                   </ListItem>
                   <ListItem>
-                    <a className={classes.linkButton} href={activePlace.website} target="_blank" rel="noopener">
+                    <a className={classes.linkButton} href={activePlace.website} target="_blank" rel="noopener noreferrer">
                       {activePlace.website}
                     </a>
                   </ListItem>
