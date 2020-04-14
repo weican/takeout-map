@@ -3,10 +3,11 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Icon } from "leaflet";
 import { getAllRestaurants } from '../services/Restaurant';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Typography, List, ListItem, ListItemIcon, ListItemText, Grid } from '@material-ui/core';
+import { Typography, List, ListItem, ListItemText } from '@material-ui/core';
 import { Place } from './ModalDialog';
 import CityPanel from './CityPanel';
 import Moment from 'react-moment';
+import Control from 'react-leaflet-control';
 
 const leafletContainer = {
   width: '100%',
@@ -93,7 +94,10 @@ export const MapContainer = ({ position, zoom }: any) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
           />
-          <CityPanel/>
+          
+          <Control position="topright" >
+            <CityPanel/>
+          </Control>
           <Marker
             key={0}
             position={[
