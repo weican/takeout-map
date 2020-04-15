@@ -3,22 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Modal, Backdrop, Fade, Typography, Button, Grid, TextField } from '@material-ui/core';
 import { getPlaceData } from '../services/Geocoding';
 import { createRestaurant, deleteRestaurant } from '../services/Restaurant';
-
-export interface Place {
-  name: string,
-  address: string,
-  city: string,
-  postcode: string,
-  area: string,
-  country: string,
-  latitude: number,
-  longitude: number,
-  notes: string,
-  phone: string,
-  open_time: string,
-  website: string,
-  updated_at: Date | null,
-}
+import { Place } from './Place';
 
 const PlaceData: Place = {
   name: "",

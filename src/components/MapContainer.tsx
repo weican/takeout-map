@@ -3,8 +3,8 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Icon } from "leaflet";
 import { getAllRestaurants } from '../services/Restaurant';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Typography, List, ListItem, ListItemText } from '@material-ui/core';
-import { Place } from './ModalDialog';
+import { Typography, List, ListItem, ListItemText, Button } from '@material-ui/core';
+import { Place } from './Place';
 import CityPanel from './CityPanel';
 import Moment from 'react-moment';
 import Control from 'react-leaflet-control';
@@ -71,10 +71,19 @@ const useStyles = makeStyles((theme:Theme) =>
   }),
 );
 
+export type Viewport = {
+  center: [number, number],
+  zoom: number,
+}
+
 export const MapContainer = ({ position, zoom }: any) => {
   const [activePlace, setActivePlace] = useState<Place | null>(null);
   const [list, setList] = useState({ restaurants: [] });
   const classes = useStyles();
+  const [viewport, setViewport] = useState<Viewport>({
+    center: [position[0], position[1]],
+    zoom: 14,
+  });
 
   useEffect(() => {
     const getAllRestaurantsAsync = async () => {
@@ -85,24 +94,31 @@ export const MapContainer = ({ position, zoom }: any) => {
     getAllRestaurantsAsync();
   }, []);
 
+  useEffect(() => {
+    setViewport({
+      center: [position[0], position[1]],
+      zoom: 14,
+    });
+  }, [position]);
+
   return (
     <>
       {
-        position[0] && position[1] &&
-        <Map style={leafletContainer} center={position} zoom={zoom}>
+        viewport.center[0] && viewport.center[1] &&
+        <Map style={leafletContainer} zoom={zoom} viewport={viewport}>>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
           />
           
           <Control position="topright" >
-            <CityPanel/>
+            <CityPanel viewport={setViewport}/>
           </Control>
           <Marker
             key={0}
             position={[
-              position[0],
-              position[1]
+              viewport.center[0],
+              viewport.center[1]
             ]}
             icon={homeIcon}
           />

@@ -1,5 +1,5 @@
 import { sendPostRequest, sendGetRequest, sendDeleteRequest } from "./Request"
-import { Place } from "../components/ModalDialog";
+import { Place } from "../components/Place";
 
 // export const url = "https://takeout-map.herokuapp.com/";
 export const url = "https://takeout-map-stage.herokuapp.com/";
