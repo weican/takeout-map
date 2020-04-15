@@ -3,5 +3,7 @@ import apikey from '../apikey.json';
 
 export const url = "https://maps.googleapis.com/maps/api/geocode/json";
 export const getPlaceData = (address: string) => {
-    return sendGetRequest(`${url}?address=${address}&key=${apikey.key}`);
+    const regexp = /#[0-9]+/;
+    const modifyAddress = address.replace(regexp, '');
+    return sendGetRequest(`${url}?address=${modifyAddress}&key=${apikey.key}`);
 }
