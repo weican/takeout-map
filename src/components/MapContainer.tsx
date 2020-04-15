@@ -112,7 +112,7 @@ export const MapContainer = ({ position, zoom }: any) => {
           />
           
           <Control position="topright" >
-            <CityPanel viewport={setViewport}/>
+            <CityPanel viewport={setViewport} currentPosition={position} zoom={zoom}/>
           </Control>
           <Marker
             key={0}

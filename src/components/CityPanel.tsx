@@ -6,7 +6,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
-import { Viewport } from './MapContainer';
 
 const BootstrapInput = withStyles((theme: Theme) =>
   createStyles({
@@ -53,27 +52,36 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default ({viewport} : any) => {
+export default ({viewport, currentPosition, zoom} : any) => {
   const classes = useStyles();
   const [city, setCity] = React.useState('');
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     console.log(event.target.value);
     setCity(event.target.value as string);
     const city = [
-      [51.0443141,-114.0632342],
-      [43.667472,-79.3960417],
-      [49.260938, -123.1169297]
+      [51.0443141,-114.0632342],  // Calgary
+      [43.667472,-79.3960417],   // Toronto
+      [49.260938, -123.1169297]  // Vancouver
     ];
-    const index = event.target.value as number;
-    viewport({
-      center: [city[index][0], city[index][1]],
-      zoom: 14,
-    });
+    console.log(currentPosition);
+    const selectedIndex = event.target.value as number;
+    if(Math.abs(currentPosition[0] - city[selectedIndex][0]) > 1 && Math.abs(currentPosition[1] - city[selectedIndex][1]) > 1)  {
+      viewport({
+        center: [city[selectedIndex][0], city[selectedIndex][1]],
+        zoom: 12,
+      });
+    } else {
+      viewport({
+        center: [currentPosition[0], currentPosition[1]],
+        zoom: zoom,
+      });
+    }
+    
+
   };
   return (
       <FormControl className={classes.margin}>
         <NativeSelect
-          id="demo-customized-select-native"
           value={city}
           onChange={handleChange}
           input={<BootstrapInput />}
