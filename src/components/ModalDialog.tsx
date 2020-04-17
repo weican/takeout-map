@@ -196,7 +196,7 @@ export default () => {
               <Button variant="contained" color="primary" onClick={handleConfirm}>Confirm</Button>
               <Button variant="contained" onClick={handleClose}>Cancel</Button>
               {/* <Button variant="contained" onClick={handleDelete}>Delete</Button> */}
-              <Button variant="contained" onClick={handleTransform}>Transform</Button>
+              {/* <Button variant="contained" onClick={handleTransform}>Transform</Button> */}
             </Grid>
           </div>
         </Fade>
