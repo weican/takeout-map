@@ -54,3 +54,14 @@
       return response.data;
     })
   };
+
+  export const sendPatchRequest = async (URL: string, data: any) => {
+    return await axios({
+      url: URL,
+      method: 'patch',
+      data: data,
+      auth: auth,
+    }).then(response => {
+      return response.data;
+    })
+  };

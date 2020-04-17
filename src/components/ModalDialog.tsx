@@ -6,6 +6,8 @@ import { createRestaurant, deleteRestaurant } from '../services/Restaurant';
 import { Place } from './Place';
 import { AES, enc } from 'crypto-js';
 import { partPassword } from './PartPass';
+import { getAllRestaurants } from '../services/Restaurant';
+import { sendPatchRequest } from '../services/Request';
 
 const PlaceData: Place = {
   name: "",
@@ -60,6 +62,7 @@ export default () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [place, setPlace] = useReducer(reducer, PlaceData);
+  const [list, setList] = useState({ restaurants: [] });
 
   const handleOpen = () => {
     setOpen(true);
@@ -69,6 +72,14 @@ export default () => {
     setOpen(false);
   };
 
+  
+  const decrypt = (text: string) => {
+    const data = enc.Base64.parse(text).toString(enc.Utf8);
+    const res = AES.decrypt(data, `jNb/Za7huP2Mja=9${partPassword()}`).toString(enc.Utf8);
+    console.log(res);
+    return res;
+  }
+
   const handleDelete = () => {
     const deleteRestaurantAsync = async() => {
       const res = await deleteRestaurant("");
@@ -76,6 +87,25 @@ export default () => {
     }
     deleteRestaurantAsync();
   };
+
+  const handleTransform = () => {
+
+      const getAllRestaurantsAsync = async () => {
+        const value = await getAllRestaurants();
+        setList(value._embedded);
+        value._embedded.restaurants.forEach((e:any) => {
+          console.log(e);
+          const encryptText = AES.encrypt(e.notes,`jNb/Za7huP2Mja=9${partPassword()}`).toString();
+          const notesAes = enc.Base64.stringify(enc.Utf8.parse(encryptText));
+          
+          sendPatchRequest(e._links.self.href, {
+          "notes" : notesAes
+          });
+        });
+      }
+      getAllRestaurantsAsync();
+    
+  }
 
   const handleConfirm = () => {
     const getPlaceDataAsync = async() => {
@@ -166,6 +196,7 @@ export default () => {
               <Button variant="contained" color="primary" onClick={handleConfirm}>Confirm</Button>
               <Button variant="contained" onClick={handleClose}>Cancel</Button>
               {/* <Button variant="contained" onClick={handleDelete}>Delete</Button> */}
+              <Button variant="contained" onClick={handleTransform}>Transform</Button>
             </Grid>
           </div>
         </Fade>

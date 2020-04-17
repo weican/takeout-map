@@ -33,11 +33,8 @@ export const discountIcon = new Icon({
 
 const setIcon = (place: Place) => {
   
-  if (place.notes) {
-    // if(decrypt(place.notes) !== "")
-    //   return discountIcon; 
-    return defaultIcon;
-  }
+  if(decrypt(place.notes) !== "")
+      return discountIcon; 
   return defaultIcon;
 }
 
@@ -85,7 +82,6 @@ export type Viewport = {
 const decrypt = (text: string) => {
   const data = enc.Base64.parse(text).toString(enc.Utf8);
   const res = AES.decrypt(data, `jNb/Za7huP2Mja=9${partPassword()}`).toString(enc.Utf8);
-  console.log(res);
   return res;
 }
 
