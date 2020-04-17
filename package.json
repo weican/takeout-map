@@ -11,6 +11,7 @@
     "@types/react-leaflet": "^2.5.1",
     "@types/react-router-dom": "^5.1.4",
     "axios": "^0.19.2",
+    "crypto-js": "^4.0.0",
     "leaflet": "^1.6.0",
     "leaflet.awesome-markers": "^2.0.5",
     "leaflet.awesome-markers-alarm": "^3.0.0",
@@ -46,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^3.1.44"
   }
 }

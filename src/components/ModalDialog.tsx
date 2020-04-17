@@ -4,6 +4,7 @@ import { Modal, Backdrop, Fade, Typography, Button, Grid, TextField } from '@mat
 import { getPlaceData } from '../services/Geocoding';
 import { createRestaurant, deleteRestaurant } from '../services/Restaurant';
 import { Place } from './Place';
+import { AES, enc } from 'crypto-js';
 
 const PlaceData: Place = {
   name: "",
@@ -98,7 +99,12 @@ export default () => {
               break;
           }
         });
-        
+        const notesAes = AES.encrypt(place.notes,"password").toString();
+        setPlace({field: 'notes', value: notesAes});
+
+        // const res = AES.decrypt(hash, "password").toString(enc.Utf8);
+        // console.log(res);
+
         const {lat, lng}  = value.results[0].geometry.location;
         setPlace({field: 'latitude', value: lat});
         setPlace({field: 'longitude', value: lng});
