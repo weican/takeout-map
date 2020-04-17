@@ -8,6 +8,8 @@ import { Place } from './Place';
 import CityPanel from './CityPanel';
 import Moment from 'react-moment';
 import Control from 'react-leaflet-control';
+import { AES, enc } from 'crypto-js';
+import { partPassword } from './PartPass';
 
 const leafletContainer = {
   width: '100%',
@@ -30,8 +32,12 @@ export const discountIcon = new Icon({
 })
 
 const setIcon = (place: Place) => {
-  if (place.notes)
-    return discountIcon;
+  
+  if (place.notes) {
+    // if(decrypt(place.notes) !== "")
+    //   return discountIcon; 
+    return defaultIcon;
+  }
   return defaultIcon;
 }
 
@@ -74,6 +80,13 @@ const useStyles = makeStyles((theme:Theme) =>
 export type Viewport = {
   center: [number, number],
   zoom: number,
+}
+
+const decrypt = (text: string) => {
+  const data = enc.Base64.parse(text).toString(enc.Utf8);
+  const res = AES.decrypt(data, `jNb/Za7huP2Mja=9${partPassword()}`).toString(enc.Utf8);
+  console.log(res);
+  return res;
 }
 
 export const MapContainer = ({ position, zoom }: any) => {
@@ -162,9 +175,9 @@ export const MapContainer = ({ position, zoom }: any) => {
                       {activePlace.website}
                     </a>
                   </ListItem>
-                  {activePlace.notes &&
+                  {decrypt(activePlace.notes) !== "" &&
                   <ListItem>
-                    <ListItemText className={classes.itemText}><strong>{activePlace.notes}</strong></ListItemText>
+                    <ListItemText className={classes.itemText}><strong>{decrypt(activePlace.notes)}</strong></ListItemText>
                   </ListItem>
                   }
                   <Typography variant="button">Open Time</Typography>

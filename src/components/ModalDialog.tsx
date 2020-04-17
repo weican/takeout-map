@@ -5,6 +5,7 @@ import { getPlaceData } from '../services/Geocoding';
 import { createRestaurant, deleteRestaurant } from '../services/Restaurant';
 import { Place } from './Place';
 import { AES, enc } from 'crypto-js';
+import { partPassword } from './PartPass';
 
 const PlaceData: Place = {
   name: "",
@@ -99,11 +100,9 @@ export default () => {
               break;
           }
         });
-        const notesAes = AES.encrypt(place.notes,"password").toString();
+        const encryptText = AES.encrypt(place.notes,`jNb/Za7huP2Mja=9${partPassword()}`).toString();
+        const notesAes = enc.Base64.stringify(enc.Utf8.parse(encryptText));
         setPlace({field: 'notes', value: notesAes});
-
-        // const res = AES.decrypt(hash, "password").toString(enc.Utf8);
-        // console.log(res);
 
         const {lat, lng}  = value.results[0].geometry.location;
         setPlace({field: 'latitude', value: lat});
