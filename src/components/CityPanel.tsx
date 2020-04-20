@@ -1,9 +1,6 @@
 import React from 'react';
 import { createStyles, makeStyles, withStyles, Theme } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 
@@ -63,9 +60,8 @@ export default ({viewport, currentPosition, zoom} : any) => {
       [43.667472,-79.3960417],   // Toronto
       [49.260938, -123.1169297]  // Vancouver
     ];
-    console.log(currentPosition);
     const selectedIndex = event.target.value as number;
-    if(Math.abs(currentPosition[0] - city[selectedIndex][0]) > 1 && Math.abs(currentPosition[1] - city[selectedIndex][1]) > 1)  {
+    if(Math.abs(currentPosition[0] - city[selectedIndex][0]) > 0.5 || Math.abs(currentPosition[1] - city[selectedIndex][1]) > 0.5)  {
       viewport({
         center: [city[selectedIndex][0], city[selectedIndex][1]],
         zoom: 12,
@@ -76,7 +72,6 @@ export default ({viewport, currentPosition, zoom} : any) => {
         zoom: zoom,
       });
     }
-    
 
   };
   return (
