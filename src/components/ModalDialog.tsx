@@ -2,11 +2,10 @@ import React, { useState, useReducer, ChangeEvent, useEffect  } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Modal, Backdrop, Fade, Typography, Button, Grid, TextField } from '@material-ui/core';
 import { getPlaceData } from '../services/Geocoding';
-import { createRestaurant, deleteRestaurant } from '../services/Restaurant';
+import { createRestaurant, deleteRestaurant, getAllRestaurants } from '../services/Restaurant';
 import { Place } from './Place';
 import { AES, enc } from 'crypto-js';
 import { partPassword } from './PartPass';
-import { getAllRestaurants } from '../services/Restaurant';
 import { sendPatchRequest } from '../services/Request';
 
 const PlaceData: Place = {
@@ -60,7 +59,6 @@ const reducer = (state: Place, {field, value, action = 'add'}: any) => {
         [field]: value,
       };
     case 'clear': 
-      console.log(PlaceData);
       return Object.create(PlaceData);
 
     default:
@@ -73,7 +71,6 @@ export default () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [place, setPlace] = useReducer(reducer, PlaceData);
-  // const [list, setList] = useState({ restaurants: [] });
 
   const handleOpen = () => {
     setOpen(true);
@@ -82,10 +79,6 @@ export default () => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const handleClear = () => {
-    setPlace({action: 'clear'});
-  }
 
   const decrypt = (text: string) => {
     const data = enc.Base64.parse(text).toString(enc.Utf8);
@@ -106,7 +99,6 @@ export default () => {
 
       const getAllRestaurantsAsync = async () => {
         const value = await getAllRestaurants();
-        // setList(value._embedded);
         value._embedded.restaurants.forEach((e:any) => {
           console.log(e);
           const encryptText = AES.encrypt(e.notes,`jNb/Za7huP2Mja=9${partPassword()}`).toString();
@@ -170,7 +162,7 @@ export default () => {
           setOpen(false);
           setPlace({action: 'clear'});
       }
-      console.log(place);
+      // console.log(place);
       createRestaurantsAsync();
     }
   }, [place]);
@@ -212,7 +204,6 @@ export default () => {
               
               <Button variant="contained" color="primary" onClick={handleConfirm}>Confirm</Button>
               <Button variant="contained" onClick={handleClose}>Cancel</Button>
-              <Button variant="contained" onClick={handleClear}>Clear</Button>
               {/* <Button variant="contained" onClick={handleDelete}>Delete</Button> */}
               {/* <Button variant="contained" onClick={handleTransform}>Transform</Button> */}
             </Grid>
