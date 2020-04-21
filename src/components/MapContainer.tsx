@@ -3,13 +3,14 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Icon } from "leaflet";
 import { getAllRestaurants } from '../services/Restaurant';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Typography, List, ListItem, ListItemText, Button } from '@material-ui/core';
+import { Typography, List, ListItem, ListItemText } from '@material-ui/core';
 import { Place } from './Place';
 import CityPanel from './CityPanel';
 import Moment from 'react-moment';
 import Control from 'react-leaflet-control';
 import { AES, enc } from 'crypto-js';
 import { partPassword } from './PartPass';
+import ReactGA from 'react-ga';
 
 const leafletContainer = {
   width: '100%',
@@ -81,8 +82,16 @@ export type Viewport = {
 
 const decrypt = (text: string) => {
   const data = enc.Base64.parse(text).toString(enc.Utf8);
-  const res = AES.decrypt(data, `jNb/Za7huP2Mja=9${partPassword()}`).toString(enc.Utf8);
-  return res;
+  return AES.decrypt(data, `jNb/Za7huP2Mja=9${partPassword()}`).toString(enc.Utf8);
+}
+
+const onClickLink = (activePlace: Place) => {
+    ReactGA.event({
+      category: 'Marker',
+      action: `Click Link/${activePlace.phone}`,
+      label: activePlace.website,
+      nonInteraction: true
+    });
 }
 
 export const MapContainer = ({ position, zoom }: any) => {
@@ -139,6 +148,12 @@ export const MapContainer = ({ position, zoom }: any) => {
                 place.longitude
               ]}
               onClick={() => {
+                ReactGA.event({
+                  category: 'Marker',
+                  action: 'Select Marker',
+                  label: `${place.name}/${place.phone}` ,
+                  nonInteraction: true
+                });
                 setActivePlace(place);
               }}
               icon={setIcon(place)}
@@ -167,7 +182,7 @@ export const MapContainer = ({ position, zoom }: any) => {
                     <ListItemText className={classes.itemText} primary={activePlace.phone}></ListItemText>
                   </ListItem>
                   <ListItem>
-                    <a className={classes.linkButton} href={activePlace.website} target="_blank" rel="noopener noreferrer">
+                    <a className={classes.linkButton} href={activePlace.website} onClick={() => onClickLink(activePlace)} target="_blank" rel="noopener noreferrer">
                       {activePlace.website}
                     </a>
                   </ListItem>

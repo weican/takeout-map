@@ -18,16 +18,16 @@ const defaultPosition = [51.0443141,-114.0632342];
 
 const Home = () => {
 
-  const {latitude, longitude, error} = usePosition();
+  const {latitude, longitude } = usePosition();
   const [position, setPosition] = useState(myPosition);
 
   useEffect(() => {
     setPosition([latitude, longitude]);
   },[latitude, longitude]);
   
-  // useEffect(() => {
-  //   ReactGA.pageview(window.location.pathname + window.location.search)
-  // }, []);
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, []);
 
     return (
     <div className="App">
