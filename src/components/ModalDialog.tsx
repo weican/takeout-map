@@ -7,6 +7,8 @@ import { Place } from './Place';
 import { AES, enc } from 'crypto-js';
 import { partPassword } from './PartPass';
 import { sendPatchRequest } from '../services/Request';
+import  FindPlacesAutocomplete from './FindPlacesAutocomplete';
+import GooglePlacesAuto from './GooglePlacesAuto';
 
 const PlaceData: Place = {
   name: "",
@@ -189,6 +191,8 @@ export default () => {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Add Restaurant</h2>
+            <FindPlacesAutocomplete/>
+            {/* <GooglePlacesAuto/> */}
             <form className={classes.root} noValidate autoComplete="off">
                 <TextField name='name' label="Name"  style={{ margin: 8 }} onChange={(e:ChangeEvent<HTMLInputElement>) => handleChange(e)} />
                 <TextField name='address' label="Address" onChange={(e:ChangeEvent<HTMLInputElement>) => handleChange(e)} />
