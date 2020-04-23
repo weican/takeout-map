@@ -11,6 +11,8 @@ import Control from 'react-leaflet-control';
 import { AES, enc } from 'crypto-js';
 import { partPassword } from './PartPass';
 import ReactGA from 'react-ga';
+import SnackNotificationBar from './SnackNotificationBar';
+import _ from 'lodash';
 
 const leafletContainer = {
   width: '100%',
@@ -94,9 +96,17 @@ const onClickLink = (activePlace: Place) => {
     });
 }
 
+const getLastUpdatedDate = (restaurants: Place[]) => {
+  const sortedRestaurants = _.sortBy(restaurants, (value) => {
+    return value.created_at;
+  });
+  return sortedRestaurants[sortedRestaurants.length-1].created_at.toString();
+};
+
 export const MapContainer = ({ position, zoom }: any) => {
   const [activePlace, setActivePlace] = useState<Place | null>(null);
   const [list, setList] = useState({ restaurants: [] });
+  const [lastedAddedDate, setLastedAddedDate] = useState("");
   const classes = useStyles();
   const [viewport, setViewport] = useState<Viewport>({
     center: [position[0], position[1]],
@@ -107,7 +117,7 @@ export const MapContainer = ({ position, zoom }: any) => {
     const getAllRestaurantsAsync = async () => {
       const value = await getAllRestaurants();
       setList(value._embedded);
-      console.log(value);
+      setLastedAddedDate(getLastUpdatedDate(value._embedded.restaurants));
     }
     getAllRestaurantsAsync();
   }, []);
@@ -123,7 +133,7 @@ export const MapContainer = ({ position, zoom }: any) => {
     <>
       {
         viewport.center[0] && viewport.center[1] &&
-        <Map style={leafletContainer} zoom={zoom} viewport={viewport}>>
+        <Map style={leafletContainer} zoom={zoom} viewport={viewport}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
@@ -200,6 +210,9 @@ export const MapContainer = ({ position, zoom }: any) => {
           )}
         </Map>
       }
+      { lastedAddedDate &&
+      <SnackNotificationBar openDialog={true} duration={5000} message={lastedAddedDate} /> }
     </>
+
   )
 }

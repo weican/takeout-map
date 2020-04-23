@@ -7,9 +7,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { Route, HashRouter as Router, Switch } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import TermOfUse from './pages/TermOfUse';
-
 import './App.css';
-import './components/MapContainer';
 
 
 const myPosition = [];
@@ -56,7 +54,6 @@ const Home = () => {
       ? <MapContainer position={position} zoom={14}></MapContainer>
       : <MapContainer position={defaultPosition} zoom={10}></MapContainer>
     }
-    
     <StickyFooter/>
   </div>);
    

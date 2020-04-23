@@ -43,6 +43,7 @@ interface PlaceType {
 }
 
 const autocompleteService = { current: null };
+const detailsService = { current: null };
 
 export default () => {
   const classes = useStyles();
@@ -92,17 +93,16 @@ export default () => {
       if (!autocompleteService.current && (window as any).google) {
         autocompleteService.current = new (window as any).google.maps.places.AutocompleteService();
       }
+
       if (!autocompleteService.current) {
         return undefined;
       }
-  
+
       if (inputValue === '') {
         setOptions([]);
         return undefined;
       }
 
-      // const res = await getAutocomplete(inputValue,[51.154438,-114.06845],20000);
-      // console.log(res);
       const sessionToken = new google.maps.places.AutocompleteSessionToken();
       const location = new google.maps.LatLng(51.154438, -114.06845);
       fetch({ input: inputValue, 

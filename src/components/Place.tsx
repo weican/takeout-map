@@ -12,5 +12,6 @@ export interface Place {
     open_time: string,
     website: string,
     updated_at: Date | null,
+    created_at: Date,
   }
   
