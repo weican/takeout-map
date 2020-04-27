@@ -3,7 +3,7 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Icon } from "leaflet";
 import { getAllRestaurants } from '../services/Restaurant';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Typography, List, ListItem, ListItemText } from '@material-ui/core';
+import { Typography, List, ListItem, ListItemText, Button } from '@material-ui/core';
 import { Place } from './Place';
 import CityPanel from './CityPanel';
 import Moment from 'react-moment';
@@ -13,6 +13,8 @@ import { partPassword } from './PartPass';
 import ReactGA from 'react-ga';
 import SnackNotificationBar from './SnackNotificationBar';
 import _ from 'lodash';
+import EditRestaurantDialog from './EditRestaurantDialog';
+import CategoryPanel from './CategoryPanel';
 
 const leafletContainer = {
   width: '100%',
@@ -100,13 +102,16 @@ const getLastUpdatedDate = (restaurants: Place[]) => {
   const sortedRestaurants = _.sortBy(restaurants, (value) => {
     return value.created_at;
   });
-  return sortedRestaurants[sortedRestaurants.length-1].created_at.toString();
+  if(sortedRestaurants[sortedRestaurants.length-1])
+    return sortedRestaurants[sortedRestaurants.length-1].created_at.toString();
 };
 
 export const MapContainer = ({ position, zoom }: any) => {
   const [activePlace, setActivePlace] = useState<Place | null>(null);
   const [list, setList] = useState({ restaurants: [] });
   const [lastedAddedDate, setLastedAddedDate] = useState("");
+  const [open, setOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const classes = useStyles();
   const [viewport, setViewport] = useState<Viewport>({
     center: [position[0], position[1]],
@@ -117,7 +122,10 @@ export const MapContainer = ({ position, zoom }: any) => {
     const getAllRestaurantsAsync = async () => {
       const value = await getAllRestaurants();
       setList(value._embedded);
-      setLastedAddedDate(getLastUpdatedDate(value._embedded.restaurants));
+      console.log(value._embedded.restaurants);
+      const lastUpdated = getLastUpdatedDate(value._embedded.restaurants);
+      if(lastUpdated)
+        setLastedAddedDate(lastUpdated);
     }
     getAllRestaurantsAsync();
   }, []);
@@ -128,6 +136,20 @@ export const MapContainer = ({ position, zoom }: any) => {
       zoom: 14,
     });
   }, [position]);
+
+  
+  const onClickEdit = (activePlace: Place) => {
+    setOpen(true);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const onSelectedCategory = (category: string) => {
+    console.log(category);
+    setSelectedCategory(category);
+  }
 
   return (
     <>
@@ -142,6 +164,9 @@ export const MapContainer = ({ position, zoom }: any) => {
           <Control position="topright" >
             <CityPanel viewport={setViewport} currentPosition={position} zoom={zoom}/>
           </Control>
+          <Control position="topright" >
+            <CategoryPanel onSelectedCategory={onSelectedCategory}/>
+          </Control>
           <Marker
             key={0}
             position={[
@@ -150,25 +175,27 @@ export const MapContainer = ({ position, zoom }: any) => {
             ]}
             icon={homeIcon}
           />
-          {list.restaurants.map((place:Place) => (
-            <Marker
-              key={place.phone}
-              position={[
-                place.latitude,
-                place.longitude
-              ]}
-              onClick={() => {
-                ReactGA.event({
-                  category: 'Marker',
-                  action: 'Select Marker',
-                  label: `${place.name}/${place.phone}` ,
-                  nonInteraction: true
-                });
-                setActivePlace(place);
-              }}
-              icon={setIcon(place)}
-            />
-          ))}
+          {list.restaurants
+            .filter((place: Place) => place.category.name === selectedCategory || selectedCategory === 'All')
+            .map((place:Place) => (
+              <Marker
+                key={place.phone}
+                position={[
+                  place.latitude,
+                  place.longitude
+                ]}
+                onClick={() => {
+                  ReactGA.event({
+                    category: 'Marker',
+                    action: 'Select Marker',
+                    label: `${place.name}/${place.phone}` ,
+                    nonInteraction: true
+                  });
+                  setActivePlace(place);
+                }}
+                icon={setIcon(place)}
+              />
+            ))}
 
           {activePlace && (
             <Popup
@@ -180,7 +207,10 @@ export const MapContainer = ({ position, zoom }: any) => {
                 setActivePlace(null);
               }}
             >
-                <Typography variant="h6">{activePlace.name}</Typography>
+                <Typography variant="h6">
+                  {activePlace.name} 
+                  <Button onClick={() => onClickEdit(activePlace)}>Edit</Button>
+                </Typography>
                 <Typography variant="caption" display="block" gutterBottom color="textSecondary">
                   Updated <Moment fromNow>{activePlace.updated_at?.toString()}</Moment>
                 </Typography>
@@ -212,6 +242,10 @@ export const MapContainer = ({ position, zoom }: any) => {
       }
       { lastedAddedDate &&
       <SnackNotificationBar openDialog={true} duration={5000} message={lastedAddedDate} /> }
+      {
+        open && activePlace &&
+        <EditRestaurantDialog openModal={open} editData={activePlace} closeModal={handleClose}/> 
+      }
     </>
 
   )

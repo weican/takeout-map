@@ -53,7 +53,6 @@ export default ({viewport, currentPosition, zoom} : any) => {
   const classes = useStyles();
   const [city, setCity] = React.useState('');
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    console.log(event.target.value);
     setCity(event.target.value as string);
     const city = [
       [51.0443141,-114.0632342],  // Calgary

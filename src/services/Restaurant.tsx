@@ -1,4 +1,4 @@
-import { sendPostRequest, sendGetRequest, sendDeleteRequest } from "./Request"
+import { sendPostRequest, sendGetRequest, sendDeleteRequest, sendPutRequest } from "./Request"
 import { Place } from "../components/Place";
 
 // export const url = "https://takeout-map.herokuapp.com/";
@@ -19,4 +19,8 @@ export const deleteRestaurant = (uuid: string) => {
 
 export const getRestaurantsByLocation = () => {
 
+}
+
+export const updatedRestaurant = (place : Place, restaurantUrl: string) => {
+    return sendPutRequest(`${restaurantUrl}`, place, "application/json");
 }

@@ -44,12 +44,15 @@
     })
   };
   
-  export const sendPutRequest = async (URL: string, data: any) => {
+  export const sendPutRequest = async (URL: string, data: any, contentType: string) => {
     return await axios({
       url: URL,
       method: 'put',
       data: data,
       auth: auth,
+      headers: {
+        'Content-Type': contentType
+      }
     }).then(response => {
       return response.data;
     })

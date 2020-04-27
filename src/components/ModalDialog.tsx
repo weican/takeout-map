@@ -1,29 +1,12 @@
 import React, { useState, useReducer, ChangeEvent, useEffect  } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Modal, Backdrop, Fade, Typography, Button, Grid, TextField } from '@material-ui/core';
+import { Modal, Backdrop, Fade, Typography, Button, Grid, TextField, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { getPlaceData } from '../services/Geocoding';
-import { createRestaurant, deleteRestaurant, getAllRestaurants } from '../services/Restaurant';
-import { Place } from './Place';
+import { createRestaurant } from '../services/Restaurant';
+import { Place, PlaceData } from './Place';
 import { AES, enc } from 'crypto-js';
 import { partPassword } from './PartPass';
-import { sendPatchRequest } from '../services/Request';
-
-const PlaceData: Place = {
-  name: "",
-  address: "",
-  city: "",
-  postcode: "",
-  area: "",
-  country: "",
-  latitude: 0.0,
-  longitude: 0.0,
-  notes: "",
-  phone: "",
-  open_time: "",
-  website: "",
-  updated_at: null,
-  created_at: new Date()
-}
+import { getCategories, createCatgoryWithRestaurant } from '../services/Categories';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -72,47 +55,16 @@ export default () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [place, setPlace] = useReducer(reducer, PlaceData);
+  const [categoriesList, setCategoriesList] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const handleOpen = () => {
+  const handleOpen = () => { 
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
-
-  const decrypt = (text: string) => {
-    const data = enc.Base64.parse(text).toString(enc.Utf8);
-    const res = AES.decrypt(data, `jNb/Za7huP2Mja=9${partPassword()}`).toString(enc.Utf8);
-    console.log(res);
-    return res;
-  }
-
-  const handleDelete = () => {
-    const deleteRestaurantAsync = async() => {
-      const res = await deleteRestaurant("");
-      console.log(res);
-    }
-    deleteRestaurantAsync();
-  };
-
-  const handleTransform = () => {
-
-      const getAllRestaurantsAsync = async () => {
-        const value = await getAllRestaurants();
-        value._embedded.restaurants.forEach((e:any) => {
-          console.log(e);
-          const encryptText = AES.encrypt(e.notes,`jNb/Za7huP2Mja=9${partPassword()}`).toString();
-          const notesAes = enc.Base64.stringify(enc.Utf8.parse(encryptText));
-          
-          sendPatchRequest(e._links.self.href, {
-          "notes" : notesAes
-          });
-        });
-      }
-      getAllRestaurantsAsync();
-    
-  }
 
   const handleConfirm = () => {
     const getPlaceDataAsync = async() => {
@@ -152,6 +104,19 @@ export default () => {
     
   }
 
+  const handleCategoriesListChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+      console.log(event.target.value as string);
+      setSelectedCategory(event.target.value as string);
+  };
+
+  useEffect(() => {
+    const getCategoriesAsync = async() => {
+      const categories = await getCategories();
+      setCategoriesList(categories._embedded.categories);
+    }
+    getCategoriesAsync();
+  }, []);
+
   useEffect(() => {
     if(place.latitude 
       && place.longitude 
@@ -162,15 +127,39 @@ export default () => {
           alert(JSON.stringify(res));
           setOpen(false);
           setPlace({action: 'clear'});
+          
+          let link = '';
+          categoriesList.forEach((item:any) => {
+            if(item.name === selectedCategory) {
+              link = item._links.self.href;
+              return;
+            }
+          });
+          if(link) {
+            const res2 = await createCatgoryWithRestaurant(`${res._links.self.href}/category`, link);
+            console.log(res2);
+          }
       }
       // console.log(place);
       createRestaurantsAsync();
     }
-  }, [place]);
+  }, [categoriesList, place, selectedCategory]);
 
   const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
     setPlace({field: e.target.name, value: e.target.value});
   }
+
+  const renderCategory = () => {
+    return categoriesList.map((item:any, index) => {
+      return (
+          <MenuItem
+            value={item.name}
+            key={index}>{item.name}
+          </MenuItem>
+        
+      );
+    });
+   }
 
   return (
     <div>
@@ -199,6 +188,15 @@ export default () => {
                 <TextField name='notes' label="Notes" onChange={(e:ChangeEvent<HTMLInputElement>) => handleChange(e)} />
                 <TextField name='website' label="Website" onChange={(e:ChangeEvent<HTMLInputElement>) => handleChange(e)} />
                 <TextField name='open_time' label="Open Time" onChange={(e:ChangeEvent<HTMLInputElement>) => handleChange(e)} />
+                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={selectedCategory}
+                  onChange={handleCategoriesListChange}
+                >
+                  {renderCategory()}
+                </Select>
             </form>
             <Grid container
               direction="row"

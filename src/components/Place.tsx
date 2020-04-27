@@ -1,9 +1,10 @@
 export interface Place {
     name: string,
+    category: any,
     address: string,
     city: string,
     postcode: string,
-    area: string,
+    state: string,
     country: string,
     latitude: number,
     longitude: number,
@@ -15,3 +16,21 @@ export interface Place {
     created_at: Date,
   }
   
+  
+export const PlaceData: Place = {
+  name: "",
+  category: null,
+  address: "",
+  city: "",
+  postcode: "",
+  state: "",
+  country: "",
+  latitude: 0.0,
+  longitude: 0.0,
+  notes: "",
+  phone: "",
+  open_time: "",
+  website: "",
+  updated_at: null,
+  created_at: new Date()
+}
