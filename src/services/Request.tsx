@@ -1,9 +1,9 @@
   import axios, { AxiosBasicCredentials } from 'axios';
-  import apikey from '../apikey.json';
+  // import apikey from '../apikey.json';
 
   const auth: AxiosBasicCredentials = {
-    username: apikey.name,
-    password: apikey.password
+    username: "",
+    password: ""
   };
 
   export const sendGetRequest = async (URL: string) => {
