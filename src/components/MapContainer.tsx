@@ -122,7 +122,7 @@ export const MapContainer = ({ position, zoom }: any) => {
     const getAllRestaurantsAsync = async () => {
       const value = await getAllRestaurants();
       setList(value._embedded);
-      console.log(value._embedded.restaurants);
+      // console.log(value._embedded.restaurants);
       const place = getLastUpdatedDate(value._embedded.restaurants);
       if(place)
       setLastPlace(place);
@@ -147,7 +147,6 @@ export const MapContainer = ({ position, zoom }: any) => {
   };
 
   const onSelectedCategory = (category: string) => {
-    console.log(category);
     setSelectedCategory(category);
   }
 
@@ -245,7 +244,7 @@ export const MapContainer = ({ position, zoom }: any) => {
       {
         open && activePlace &&
         <EditRestaurantDialog openModal={open} editData={activePlace} closeModal={handleClose}/> 
-      }
+      } */}
     </>
 
   )

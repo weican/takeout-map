@@ -12,7 +12,7 @@ import './App.css';
 
 const myPosition = [];
 const defaultPosition = [51.0443141,-114.0632342];
-// ReactGA.initialize('UA-162986528-01');
+ReactGA.initialize('UA-162986528-01');
 
 const Home = () => {
 
@@ -39,9 +39,9 @@ const Home = () => {
             Food and Restaurant Take Out Map
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={1}>
+        {/* <Grid item xs={12} sm={1}>
           <MenuPopover/>
-        </Grid>
+        </Grid> */}
     </Grid>
     
     <Typography variant="h5">Select any marker to see restaurant  information and discount.<img width="45" height="35" src="./discount.svg" alt="discount"></img></Typography>

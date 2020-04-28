@@ -1,9 +1,9 @@
 import { sendPostRequest, sendGetRequest, sendDeleteRequest, sendPutRequest } from "./Request"
 import { Place } from "../components/Place";
 
-// export const url = "https://takeout-map.herokuapp.com/";
+export const url = "https://takeout-map.herokuapp.com/";
 // export const url = "https://takeout-map-stage.herokuapp.com/";
-export const url = "http://localhost:8080/";
+// export const url = "http://localhost:8080/";
 
 export const getAllRestaurants = (size = 500) => {
     return sendGetRequest(`${url}restaurants?size=${size}`);
