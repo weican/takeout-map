@@ -208,7 +208,7 @@ export const MapContainer = ({ position, zoom }: any) => {
             >
                 <Typography variant="h6">
                   {activePlace.name} 
-                  <Button onClick={() => onClickEdit(activePlace)}>Edit</Button>
+                  {/* <Button onClick={() => onClickEdit(activePlace)}>Edit</Button> */}
                 </Typography>
                 <Typography variant="caption" display="block" gutterBottom color="textSecondary">
                   Updated <Moment fromNow>{activePlace.updated_at?.toString()}</Moment>
