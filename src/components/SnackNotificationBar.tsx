@@ -3,6 +3,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Moment from 'react-moment';
+import { Place } from './Place';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -10,7 +11,7 @@ function Alert(props: AlertProps) {
 
 export interface NotificationProps {
   openDialog: boolean,
-  message: string,
+  message: Place,
   duration: number
 }
 
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default ({openDialog, message, duration}: NotificationProps) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [displayMessage] = React.useState(message);
+  // const [displayMessage] = React.useState(message.);
 
   useEffect(() => {
     setOpen(openDialog);
@@ -43,7 +44,7 @@ export default ({openDialog, message, duration}: NotificationProps) => {
     <div className={classes.root}>
       <Snackbar open={open} autoHideDuration={duration} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
-            Restaurants added <Moment fromNow>{displayMessage}</Moment>
+            {message.name} added <Moment fromNow>{message.created_at.toString()}</Moment>
         </Alert>
       </Snackbar>
     </div>

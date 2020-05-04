@@ -103,13 +103,13 @@ const getLastUpdatedDate = (restaurants: Place[]) => {
     return value.created_at;
   });
   if(sortedRestaurants[sortedRestaurants.length-1])
-    return sortedRestaurants[sortedRestaurants.length-1].created_at.toString();
+    return sortedRestaurants[sortedRestaurants.length-1];
 };
 
 export const MapContainer = ({ position, zoom }: any) => {
   const [activePlace, setActivePlace] = useState<Place | null>(null);
   const [list, setList] = useState({ restaurants: [] });
-  const [lastedAddedDate, setLastedAddedDate] = useState("");
+  const [lastPlace, setLastPlace] = useState<Place>();
   const [open, setOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const classes = useStyles();
@@ -123,9 +123,9 @@ export const MapContainer = ({ position, zoom }: any) => {
       const value = await getAllRestaurants();
       setList(value._embedded);
       console.log(value._embedded.restaurants);
-      const lastUpdated = getLastUpdatedDate(value._embedded.restaurants);
-      if(lastUpdated)
-        setLastedAddedDate(lastUpdated);
+      const place = getLastUpdatedDate(value._embedded.restaurants);
+      if(place)
+      setLastPlace(place);
     }
     getAllRestaurantsAsync();
   }, []);
@@ -240,8 +240,8 @@ export const MapContainer = ({ position, zoom }: any) => {
           )}
         </Map>
       }
-      { lastedAddedDate &&
-      <SnackNotificationBar openDialog={true} duration={5000} message={lastedAddedDate} /> }
+      { lastPlace &&
+      <SnackNotificationBar openDialog={true} duration={5000} message={lastPlace} /> }
       {
         open && activePlace &&
         <EditRestaurantDialog openModal={open} editData={activePlace} closeModal={handleClose}/> 
