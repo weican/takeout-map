@@ -244,7 +244,7 @@ export const MapContainer = ({ position, zoom }: any) => {
       {
         open && activePlace &&
         <EditRestaurantDialog openModal={open} editData={activePlace} closeModal={handleClose}/> 
-      } */}
+      }
     </>
 
   )
