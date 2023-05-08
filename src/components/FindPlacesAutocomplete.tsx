@@ -54,7 +54,7 @@ export default () => {
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyDDXMCdsc5wa6et-O8M86J3Qjt55txPS3s&libraries=places',
+        'API KEY',
         document.querySelector('head'),
         'google-maps',
       );
